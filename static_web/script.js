@@ -19,3 +19,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Busca os dados imediatamente ao carregar a página
     fetchData();
 });
+
+
+// Saudacao 
+function saudacao() {
+  var data = new Date();
+  var hora = data.getHours();
+  var saudacao;
+
+  if (hora >= 5 && hora < 13) {
+      saudacao = 'Bom dia';
+  } else if (hora >= 13 && hora < 18) {
+      saudacao = 'Boa tarde';
+  } else {
+      saudacao = 'Boa noite';
+  }
+
+  document.getElementById('saudacao').innerText = saudacao + ", Bem Vindo!";
+}
