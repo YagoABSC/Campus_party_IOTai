@@ -8,7 +8,11 @@
 ::-webkit-scrollbar {
   display: none;
 }
-
+.conteudo-home{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 header {
   width: 100%;
   border-radius: 20px;
@@ -74,26 +78,25 @@ header {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-
+  width: 90%;
+  margin-bottom: 20px;
 
 }
 
 .cards {
-  max-width: 280px;
-  max-height: 200px; ;
+  /* max-width: 280px; */
+  width: 90%;
+  max-height: 200px;
 }
 
 .cards img {
   /* max-width: 300px; */
-  width: 280px;
-  height: 160px;
+  width: 100%;
+  height: 170px;
   border-radius: 20px;
-  box-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.2),
-    0 4px 8px rgba(0, 0, 0, 0.15),
-    0 8px 16px rgba(0, 0, 0, 0.1),
-    0 12px 24px rgba(0, 0, 0, 0.05),
-    0 16px 32px rgba(0, 0, 0, 0.02);
+  object-fit: cover;
+  filter: brightness(0.5);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.1), 0 12px 24px rgba(0, 0, 0, 0.05), 0 16px 32px rgba(0, 0, 0, 0.02);
 }
 
 .descricao1 {
@@ -102,6 +105,7 @@ header {
   bottom: 58px;
   left: 16px;
   box-sizing: content-box;
+  max-width: fit-content;
 
   & p {
     font-size: 0.7em;
@@ -110,10 +114,10 @@ header {
 
 #temperatura-home {
   position: relative;
-  bottom: 107px;
-  right: 80px;
-  font-size: 1.4em;
-  box-sizing: content-box;
+    bottom: 129px;
+    left: 11px;
+    font-size: 1.4em;
+    box-sizing: content-box;
 
   & sup{
     font-size: 0.6em;
@@ -121,18 +125,18 @@ header {
   }
 }
 
-.descricao2 {
+/* .descricao2 {
   color: #FFF;
-    position: relative;
-    bottom: 52px;
-    left: 108px;
-    box-sizing: content-box;
-    max-width: 200px;
+  position: relative;
+  bottom: 52px;
+  left: 108px;
+  box-sizing: content-box;
+  max-width: fit-content;
 
   & p {
     font-size: 0.6em;
   }
-}
+} */
 
 nav {
   position: fixed;
