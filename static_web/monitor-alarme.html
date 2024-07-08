@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambiente Controlado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(255, 255, 255, 1) 80%), url(assets/greenhouse2.jpg);
+            background-size: cover;
+            height: 100vh;
+            background-position: center center;
+        }
+
+        header {
+            background-color: white;
+            border-radius: 0 0 20px 20px;
+            padding: 5px;
+        }
+
+        main{
+            /* height: 100vh; */
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 5%;
+        }
+
+        .img-iconAlerta img {
+            width: 18vw;
+            height: 18vw;
+        
+        }
+
+        .user{
+            font-size: 5vw;
+        }
+
+        .boasVindas{
+            margin: 0;
+        }
+
+        .ligar{
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .container-header {
+            margin: 10px;
+        }
+
+        .status_control {
+            margin: 30px 20px;
+            padding: 20px 0;
+            background-color: #263375;
+            color: white;
+            font-size: 3vw;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .temperature-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            flex-wrap: wrap;
+            margin: 10px;
+            padding: 10px;
+            gap: 10px;
+            justify-items: center;
+            align-items: center;
+        }
+
+        .current-temperature {
+            border-radius: 50%;
+            width: 50vw;
+            height: 50vw;
+            /* margin: 40px 0; */
+            color: white;
+            font-size: 10vw;
+            /* padding: 35% 25%; */
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            box-shadow: 0px 0px 15px 5px #263375;
+            color: #263375;
+        }
+
+        .other_temperatures {
+            display: grid;
+            /* grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); */
+            gap: 10px;
+            justify-items: center;
+            width: fit-content;
+        }
+
+        .outside-temperature {
+            background-color: #263375;
+            height: 28vw;
+            width: 28vw;
+            border-radius: 30%;
+            color: white;
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .subtitle-other-temperature {
+            font-size: 4vw;
+        }
+
+        .title-other-temperature {
+            font-size: 6vw;
+        }
+
+        .alarm-container{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            justify-items: center;
+            margin: 20px 0;
+        }
+
+        .alarm-control{
+            background-color: #263375;
+            height: 35vw;
+            width: 40vw;
+            border-radius: 20px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            padding: 0 10px;
+        }
+
+        .subtitle-alarm-control{
+            font-size: 5vw;
+        }
+
+        .title-alarm-control{
+            font-size: 7vw;
+        }
+
+        
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container-header">
+            <div class="img-iconAlerta">
+                <img src="assets/casa.jpg" alt="Foto da casa">
+                <ion-icon name="notifications-outline" class="notificao"></ion-icon>
+            </div>
+            <div class="boasVindas" style="text-align: center;">
+                <h2><b class="user">Ambiente Controlado</b></h2>
+            </div>
+    </header>
+
+    <main>
+
+        <div class="status_control">
+            <h2>Status atual</h2>
+        </div>
+
+        <section class="temperature-container">
+            <div class="current-temperature">--°C</div>
+
+            <div class="other_temperatures">
+                <div class="outside-temperature">
+                    <span class="subtitle-other-temperature">Humidade</span>
+                    <h3 class="title-other-temperature"><i class="icone2 fas fa-tint" style="color: rgba(85, 158, 254, 1);"></i> --%</h3>
+                    
+                </div>
+                <div class="outside-temperature">
+                    <span class="subtitle-other-temperature">Externa</span>
+                    <h3 class="title-other-temperature"><i class="icone1 fas fa-temperature-low" style="color: rgba(255, 70, 70, 1);"></i> --°C</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="alarm-container">
+
+            <div class="alarm-control">
+                <span class="subtitle-alarm-control">Temperatura acima de:</span>
+                <h3 class="title-alarm-control">25°C ou +</h3>
+            </div>
+
+            <div class="alarm-control">
+                <span class="subtitle-alarm-control">Umidade abaixo de:</span>
+                <h3 class="title-alarm-control">10% ou -</h3>
+            </div>
+
+        </section>
+
+    </main>
+
+    <nav>
+        <div class="itens-nav">
+            <a href="">
+                <ion-icon name="home-outline"></ion-icon>
+            </a>
+            <div class="ligar">
+                <a href="">
+                    <ion-icon name="power-outline" class="power"></ion-icon>
+                </a>
+            </div>
+            <a href="">
+                <ion-icon name="person-outline"></ion-icon>
+            </a>
+        </div>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -31,7 +31,7 @@
   <script>
     async function fetchData() {
       try {
-        const response = await fetch('http://localhost/aecio/ProjetoMakers/fake_server/mock_data.php');
+        const response = await fetch('http://localhost/Campus_party_IOTai/fake_server/mock_data.php');
         const data = await response.json();
 
         updateTable(data);
