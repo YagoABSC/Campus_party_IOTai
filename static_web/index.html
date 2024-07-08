@@ -12,6 +12,7 @@
     rel="stylesheet">
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
   <link rel="stylesheet" href="style.css">
 
   
@@ -21,7 +22,7 @@
   <header>
     <div class="container-header">
       <div class="img-iconAlerta">
-        <img src="assets/casa.jpg" alt="Foto da casa">
+        <img src="https://avatars.githubusercontent.com/u/153244771?v=4" alt="imagem de perfil">
         <ion-icon name="notifications-outline" class="notificao"></ion-icon>
       </div>
       <div class="boasVindas">
@@ -38,18 +39,22 @@
         <a href="monitorUm.html">
           <img src="assets/casa.jpg" alt="Imagem da casa">
           <figcaption class="descricao1">
-            <h4>Monitor Casa</h4>
-            <p>4 cômodos sendo monitorados</p>
+            <div>
+              <h4>Monitor Casa</h4>
+              <p>4 cômodos sendo monitorados</p>
+            </div>
           </figcaption>
         </a>
       </figure>
       <figure class="cards">
-        <a href="https://www.climatempo.com.br/" target="_blank">
+        <!-- <a href="https://www.climatempo.com.br/" target="_blank"> -->
           <img src="assets/ceu.jpg" alt="Imagem do céu">
           <figcaption class="descricao1">
-            <h4>Temperatura Externa</h4>
-            <p>Previsão de chuva e ventos fortes</p>
-            <span id="temperatura-home">22<sup><ion-icon name="cloud"></ion-icon></sup></span>
+            <div>
+              <h4>Temperatura Externa</h4>
+              <p id="info-desc">...</p>
+            </div>
+            <div id="weather"></div>
           </figcaption>
         </a>
       </figure>
@@ -57,8 +62,10 @@
         <a href="monitor-alarme.html">
           <img src="assets/estufa.jpg" alt="Imagem da estufa">
           <figcaption class="descricao1">
-            <h4>Monitorar e Controlar Estufa</h4>
-            <p>Umidade relativamente boa, temperatura estável</p>
+            <div>
+              <h4>Monitorar e Controlar Estufa</h4>
+              <p>Umidade relativamente boa, temperatura estável</p>
+            </div>
           </figcaption>
         </a>
       </figure>
@@ -80,6 +87,7 @@
   </nav>
   </main>
   <script src="script.js"></script>
+  <script src="api.js"></script>
 </body>
 
 </html>
