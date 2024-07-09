@@ -80,8 +80,44 @@
             </a>
         </div>
     </nav>
-    <script src="api.js"></script>
     <script src="script.js"></script>
+    <script>
+        // weather api
+const apiKey = 'd8737a68d3d3116597cd72e07f54f098';
+const city = 'São Paulo';
+const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric&lang=pt`;
+
+
+// função assíncrona que vai pegar as informações do tempo
+async function fetchWeather() {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        if (data.cod !== 200) { // se tiver erro na busca da informação 
+            console.error('Erro ao buscar dados da API de tempo:', data.message);
+            return;
+        }
+        updateWeather(data); // se tudo certo aos buscar as informações 
+    } catch (error) { // se tiver erro mostra o erro
+        console.error('Erro ao buscar dados da API de tempo:', error);
+    }
+}
+//coloca os dados de temperatura atual na sessão tempExterna no html
+function updateWeather(data) {
+    const temperature = document.querySelector('.tempExterna .valor');
+    const valorTemperatura = data.main.temp;
+    temperature.textContent = `${valorTemperatura}°C`;
+}
+
+fetchWeather();
+//https://www.freecodecamp.org/news/make-api-calls-in-javascript/ 
+// ^ tá em inglês mas com a tradução do google é possível entender bem 
+
+function WeatherUpdates() {
+    fetchWeather(city, apiKey);
+    setInterval(() => fetchWeather(city, apiKey), 1800000); // Atualiza a cada 30 minutos
+}
+    </script>
 </body>
 
 </html>

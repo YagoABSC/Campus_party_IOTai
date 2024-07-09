@@ -128,7 +128,7 @@ label {
 
 .tempExterna .valor {
     color: #263375;
-    font-size: 20vw;
+    font-size: 14vw;
     font-style: normal;
     font-weight: 500;
     line-height: 4vw;
@@ -305,5 +305,84 @@ nav {
         width: 85px;
         height: 85px;
     }
+
+}
+@media (min-width: 720px) and (max-width: 899px) {
+    .user {
+        margin-left: 7rem;
+        font-size: 4.5vw;
+    }
+
+    .boasVindas {
+        margin-left: 4rem;
+    }
+
+    .gridlocais {
+        margin-bottom: 5vw;
+    }
+    .icon {
+        font-size:7vw;
+    }
+    label {
+        font-size:3vw;
+    }
+    main {
+        margin: 8vw 4vw;
+    }
+
+    .btnlocal {
+        height: 16vw;
+        width: 16vw;
+    }
+
+    .tempExterna {
+        margin-left: 7rem;
+        height:45vw;
+        width:45vw;
+
+    }
+    .tempExterna .valor {
+        font-size:11vw;
+    }
+
+    .data {
+        margin-top: 5vw;
+        margin-bottom: 13vw;
+    }
+    .data .item {
+        height:20vw;
+        width:22vw;
+    }
+
+    .data .item .icone1 {
+        top: 4.5rem;
+        right: 3rem;
+        font-size: 5vw;
+    }
+
+    .data .item .icone2 {
+        top: 4.5rem;
+        right: 3rem;
+        font-size: 5vw;
+    }
+    .data .item .value {
+    font-size: 4vw;
+    top:0.6rem;
+    left: 0.8rem;
+}
+
+    .data .item p {
+        bottom: 1.6rem;
+        left: 0;
+        font-size:4vw;
+    }
+
+    .data .item sup {
+        font-size: 1.9rem;
+        bottom: 3.5rem;
+        left: 4rem;
+    }
+}
+@media screen and (min-width: 900px){
 
 }
