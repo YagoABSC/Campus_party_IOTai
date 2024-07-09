@@ -242,6 +242,11 @@ nav {
 
 @media screen and (max-width: 699px) {
 
+    .user {
+        margin-left: 2rem;
+        font-size: 5vw;
+    }
+
     .boasVindas {
         margin-left: 3rem;
     }
