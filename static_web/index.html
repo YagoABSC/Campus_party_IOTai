@@ -21,7 +21,7 @@
         }
 
         body {
-            background-image: linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(255, 255, 255, 1) 80%), url(assets/greenhouse2.jpg);
+            /* background-image: linear-gradient(rgba(0, 0, 0, 0) 20%, rgba(255, 255, 255, 1) 80%), url(assets/greenhouse2.jpg); */
             background-size: cover;
             background-repeat: no-repeat;
             height: 100vh;
@@ -33,13 +33,13 @@
             border-radius: 0 0 0 20px;
             padding: 15px 10px;
             width: 100%;
-            border-radius: 20px;
+            /* border-radius: 20px; */
             padding-bottom: 5px;
             box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.15), 0 4px 4px rgba(0, 0, 0, 0.06), 0 8px 8px rgba(0, 0, 0, 0.04), 0 16px 16px rgba(0, 0, 0, 0.02);
         }
 
         .container-header {
-            margin: 15px 30px 30px 30px;
+            margin: 15px;
         }
 
         .img-iconAlerta {
@@ -237,6 +237,10 @@
             display: inline-block;
             vertical-align: middle;
         }
+
+        #avatar-home-icon{
+          font-size: 3.3em;
+        }
     </style>
 </head>
 
@@ -244,11 +248,12 @@
     <header>
         <div class="container-header">
             <div class="img-iconAlerta">
-                <img src="https://avatars.githubusercontent.com/u/153244771?v=4" alt="imagem de perfil">
+                <!-- <img src="" alt="imagem de perfil"> -->
+                <ion-icon name="person-circle-outline" id="avatar-home-icon"></ion-icon>
                 <ion-icon name="notifications-outline" class="notificao"></ion-icon>
             </div>
             <div class="boasVindas">
-                <h2>Olá, <b class="user">Arthur</b></h2>
+                <h2>Olá, <b class="user">Campuseiro</b></h2>
                 <span id="saudacao"></span>
             </div>
         </div>
@@ -442,7 +447,7 @@
                 saudacao = 'Boa noite';
             }
 
-            document.getElementById('saudacao').innerText = saudacao + ", Bem Vindo!";
+            document.getElementById('saudacao').innerText = saudacao + " e bem vindo ao IOTai!";
         }
     </script>
 </body>
