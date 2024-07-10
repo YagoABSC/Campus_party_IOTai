@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const temperatureElement = document.getElementById('curTemp');
-    const humidityElement = document.getElementById('curHum');
+    const temperatureElement = document.getElementById('temperature');
+    const humidityElement = document.getElementById('humidity');
   
     function fetchData() {
       // fetch('http://esp32.local/data')
@@ -13,19 +13,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
         humidityElement.innerHTML = `<i class="icone2 fas fa-tint" style="color: rgba(85, 158, 254, 1);"></i> ${data.humidity.toFixed(0)}%`;
 
-        if (temperatureElement <= 10) {
+        if (temperatureElement <= 10.00) {
 
             document.getElementById('temp-status').innerText = "Temperatura abaixo do ideal";
 
-        }else if(temperatureElement >= 26 && temperatureElement <= 50){
+        }else if(parseFloat(temperatureElement) >= 26 && parseFloat(temperatureElement) <= 50){
 
             document.getElementById('temp-status').innerText = "Aviso: Temperatura acima do ideal";
 
-         }else if(temperatureElement > 50){
+         }else if(parseFloat(temperatureElement) > 50){
             
             document.getElementById('temp-status').innerText = "Perigo: Temperatura muito acima do normal!";
 
-        }else if(temperatureElement > 10 && temperatureElement < 26){
+        }else if(parseFloat(temperatureElement) > 10 && parseFloat(temperatureElement) < 26){
         
             document.getElementById('temp-status').innerText = "Temperatura ideal";
         
