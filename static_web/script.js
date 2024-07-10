@@ -4,14 +4,14 @@ document.addEventListener('DOMContentLoaded', function() {
   
     function fetchData() {
       //fetch('http://esp32.local/data')
-      fetch('http://localhost/projetomakers/php/fake_data.php')
+      fetch('http://localhost/Campus_party_IOTai/php/fake_data.php')
         .then(response => response.json())
         .then(data => {
 
 
-        temperatureElement.innerHTML = `<div>${data.temperature.toFixed(0)}°C</div>`;
+        temperatureElement.textContent = data.temperature.toFixed(0);
 
-        humidityElement.innerHTML = `<i class="icone2 fas fa-tint" style="color: rgba(85, 158, 254, 1);"></i> ${data.humidity.toFixed(0)}%`;
+        humidityElement.textContent = data.humidity.toFixed(0);
 
         if (data.temperature <= 10) {
 
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   
     // Busca os dados a cada 2 segundos, tempo de atualização do módulo
-    setInterval(fetchData, 5000);
+    setInterval(fetchData, 3500);
   
     // Busca os dados imediatamente ao carregar a página
     fetchData();

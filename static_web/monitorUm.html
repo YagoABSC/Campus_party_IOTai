@@ -489,7 +489,7 @@
                 const data = await response.json();
                 const temp = data.main.temp;
 
-                document.querySelector('.valor').textContent = `${temp}°C`;
+                document.querySelector('.valor').textContent = `${temp.toFixed(0)}°C`;
 
             } catch (error) { // se tiver erro mostra o erro
                 console.error('Erro ao buscar dados da API de tempo:', error);
