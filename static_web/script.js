@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const humidityElement = document.getElementById('humidity');
   
     function fetchData() {
-      // fetch('http://esp32.local/data')
-      fetch('http://localhost/Campus_party_IOTai/php/fake_data.php')
+      //fetch('http://esp32.local/data')
+      fetch('http://localhost/projetomakers/php/fake_data.php')
         .then(response => response.json())
         .then(data => {
 
@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Busca os dados imediatamente ao carregar a página
     fetchData();
 });
-
 
 // Saudacao 
 function saudacao() {
