@@ -15,7 +15,7 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="style.css">
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -36,30 +36,42 @@
             padding: 15px 10px;
         }
 
-        main{
+        main {
             /* height: 100vh; */
             display: grid;
             grid-template-columns: 1fr;
-            gap: 5%;
+            /* gap: 5%; */
+        }
+
+        .itens-nav {
+            width: 70%;
+            max-width: 400px;
+        }
+
+        .img-iconAlerta {
+            & ion-icon {
+                font-size: 7vw;
+                color: #004A8D;
+            }
         }
 
         .img-iconAlerta img {
-            width: 18vw;
-            height: 18vw;
-        
+            width: 12vw;
+            height: 12vw;
+
         }
 
-        .user{
+        .user {
             font-size: 5vw;
         }
 
-        .boasVindas{
+        .boasVindas {
             margin: 0;
         }
 
-        .ligar{
+        /* .ligar {
             box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
-        }
+        } */
 
         .container-header {
             margin: 10px;
@@ -67,10 +79,10 @@
 
         .status_control {
             margin: 30px 20px;
-            padding: 20px 0;
+            padding: 20px 10px;
             background-color: #263375;
             color: white;
-            font-size: 3vw;
+            font-size: 1.2em;
             border-radius: 20px;
             text-align: center;
         }
@@ -78,7 +90,6 @@
         .temperature-container {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            flex-wrap: wrap;
             margin: 10px;
             padding: 10px;
             gap: 10px;
@@ -126,17 +137,17 @@
         }
 
         .title-other-temperature {
-            font-size: 6vw;
+            font-size: 5vw;
         }
 
-        .alarm-container{
+        .alarm-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             justify-items: center;
             margin: 20px 0;
         }
 
-        .alarm-control{
+        .alarm-control {
             background-color: #263375;
             height: 35vw;
             width: 40vw;
@@ -146,20 +157,22 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 5px;
-            padding: 0 10px;
+            gap: 15px;
+            padding: 0 15px;
         }
 
-        .subtitle-alarm-control{
-            font-size: 5vw;
+        .subtitle-alarm-control {
+            font-size: 4vw;
+            padding: 0 5px;
         }
 
-        .title-alarm-control{
+        .title-alarm-control {
             font-size: 7vw;
         }
 
-        
-
+        @media screen {
+            
+        }
     </style>
 </head>
 
@@ -167,7 +180,7 @@
     <header>
         <div class="container-header">
             <div class="img-iconAlerta">
-                <img src="https://avatars.githubusercontent.com/u/153244771?v=4" alt="Foto da casa">
+                <img src="assets/casa.jpg" alt="Foto da casa">
                 <ion-icon name="notifications-outline" class="notificao"></ion-icon>
             </div>
             <div class="boasVindas" style="text-align: center;">
@@ -177,22 +190,25 @@
 
     <main>
 
-        <div class="status_control">
-            <h2>Status atual</h2>
+        <div class="status_control" id="statusControl">
+            <h2 id="temp-status">Status atual</h2>
+            <h4 id="humi-status">Umidade atual</h4>
         </div>
 
         <section class="temperature-container">
-            <div class="current-temperature">--°C</div>
+            <div class="current-temperature" id="curTemp">--°C</div>
 
             <div class="other_temperatures">
-                <div class="outside-temperature">
+                <div class="outside-temperature warning">
                     <span class="subtitle-other-temperature">Humidade</span>
-                    <h3 class="title-other-temperature"><i class="icone2 fas fa-tint" style="color: rgba(85, 158, 254, 1);"></i> --%</h3>
-                    
+                    <h3 class="title-other-temperature" id="curHum">
+                        <i class="icone2 fas fa-tint" style="color: rgba(85, 158, 254, 1);"></i>
+                    </h3>
+
                 </div>
-                <div class="outside-temperature">
+                <div class="outside-temperature warning">
                     <span class="subtitle-other-temperature">Externa</span>
-                    <h3 class="title-other-temperature"><i class="icone1 fas fa-temperature-low" style="color: rgba(255, 70, 70, 1);"></i> --°C</h3>
+                    <h3 class="title-other-temperature" id="extTemp"><i class="icone1 fas fa-temperature-low" style="color: rgba(255, 70, 70, 1);"></i> --°C</h3>
                 </div>
             </div>
         </section>
@@ -230,6 +246,141 @@
     </nav>
 
     <script src="script.js"></script>
+
+    <!-- <script src="api.js"></script> -->
+    
+    <!-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const temperatureElement = document.getElementById('curTemp');
+    const humidityElement = document.getElementById('curHum');
+
+    
+  
+    function fetchData() {
+      //fetch('http://esp32.local/data')
+      fetch('http://localhost/Campus_party_IOTai/static_web/mock_data.php')
+        .then(response => response.json())
+        .then(data => 
+        {
+        
+        const temperature = Math.floor(Math.random() * 71);
+        const humidity = Math.floor(Math.random() * 101);
+
+        if (temperature <= 10) {
+
+            document.getElementById('temp-status').innerText = "Temperatura abaixo do ideal";
+
+        }else if(temperature >= 26 && temperature <= 50){
+
+            document.getElementById('temp-status').innerText = "Aviso: Temperatura acima do ideal";
+
+         }else if(temperature > 50){
+            
+            document.getElementById('temp-status').innerText = "Perigo: Temperatura muito acima do normal!";
+
+        }else{
+        
+            document.getElementById('temp-status').innerText = "Temperatura ideal";
+        
+        }
+
+        if (humidity <= 30) {
+
+            document.getElementById('humi-status').innerText = "Umidade abaixo do ideal"
+        
+        } else if (humidity => 60){
+           
+            document.getElementById('humi-status').innerText = "Umidade muito alta"
+        
+        } else{
+         
+            document.getElementById('humi-status').innerText = "Umidade ideal"
+       
+        }
+            
+          temperatureElement.textContent = temperature + '°C';
+
+          humidityElement.innerHTML = `<i class="icone2 fas fa-tint" style="color: rgba(85, 158, 254, 1);"></i> ${humidity} % `;
+        })
+        .catch(error => console.error('Erro ao buscar dados:', error));
+
+
+        
+        
+    }
+
+    
+  
+    // Busca os dados a cada 2 segundos, tempo de atualização do módulo
+    setInterval(fetchData, 6000);
+  
+    // Busca os dados imediatamente ao carregar a página
+    fetchData();
+}); -->
+
+<script>
+async function getWeather(city, apiKey) {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=pt`;
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Erro ao fazer a solicitação: ${response.status}`);
+        }
+        const data = await response.json();
+        const temp = data.main.temp;
+        const tempMin = data.main.temp_min;
+        const tempMax = data.main.temp_max;
+        const humidity = data.main.humidity;
+        const weatherDescription = data.weather[0].description;
+        const weatherId = data.weather[0].id;
+
+        const weatherIconClass = getWeatherIconClass(weatherId);
+
+        document.getElementById('extTemp').innerHTML = `
+            <i class="icone1 fas fa-temperature-low" style="color: rgba(255, 70, 70, 1);"></i> ${temp.toFixed(0)}°C</h3>
+        `;
+
+
+    } catch (error) {
+        document.getElementById('weather').innerText = error.message;
+        document.getElementById('info-desc').innerText = '';
+    }
+}
+
+function getWeatherIconClass(weatherId) {
+    if (weatherId >= 200 && weatherId < 300) {
+        return 'wi-thunderstorm';
+    } else if (weatherId >= 300 && weatherId < 400) {
+        return 'wi-sprinkle';
+    } else if (weatherId >= 500 && weatherId < 600) {
+        return 'wi-rain';
+    } else if (weatherId >= 600 && weatherId < 700) {
+        return 'wi-snow';
+    } else if (weatherId >= 700 && weatherId < 800) {
+        return 'wi-fog';
+    } else if (weatherId === 800) {
+        return 'wi-day-sunny';
+    } else if (weatherId > 800) {
+        return 'wi-cloudy';
+    } else {
+        return 'wi-na';
+    }
+}
+
+const apiKey = '94753d611e61a7b1aaadf87ad8a8b030';
+const city = 'São Paulo';
+
+// Função para atualizar o clima periodicamente
+function startWeatherUpdates() {
+    getWeather(city, apiKey);
+    setInterval(() => getWeather(city, apiKey), 1800000); // Atualiza a cada 30 minutos
+}
+
+// Inicia as atualizações de clima
+startWeatherUpdates();
+    </script>
+
 </body>
 
 </html>
