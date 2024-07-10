@@ -3,48 +3,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const humidityElement = document.getElementById('humidity');
   
     function fetchData() {
-      // fetch('http://esp32.local/data')
-      fetch('http://localhost/Campus_party_IOTai/php/fake_data.php')
+      //fetch('http://esp32.local/data')
+      fetch('http://localhost/projetomakers/php/fake_data.php')
         .then(response => response.json())
         .then(data => {
-
-
-        temperatureElement.innerHTML = `<div>${data.temperature.toFixed(0)}°C</div>`;
-
-        humidityElement.innerHTML = `<i class="icone2 fas fa-tint" style="color: rgba(85, 158, 254, 1);"></i> ${data.humidity.toFixed(0)}%`;
-
-        if (temperatureElement <= 10.00) {
-
-            document.getElementById('temp-status').innerText = "Temperatura abaixo do ideal";
-
-        }else if(parseFloat(temperatureElement) >= 26 && parseFloat(temperatureElement) <= 50){
-
-            document.getElementById('temp-status').innerText = "Aviso: Temperatura acima do ideal";
-
-         }else if(parseFloat(temperatureElement) > 50){
-            
-            document.getElementById('temp-status').innerText = "Perigo: Temperatura muito acima do normal!";
-
-        }else if(parseFloat(temperatureElement) > 10 && parseFloat(temperatureElement) < 26){
-        
-            document.getElementById('temp-status').innerText = "Temperatura ideal";
-        
-        }
-
-        if (humidityElement <= 30) {
-
-            document.getElementById('humi-status').innerText = "Umidade abaixo do ideal"
-        
-        } else if (humidityElement >= 60){
-           
-            document.getElementById('humi-status').innerText = "Umidade muito alta"
-        
-        } else{
-         
-            document.getElementById('humi-status').innerText = "Umidade ideal"
-       
-        }
-
+          temperatureElement.textContent = data.temperature;
+          humidityElement.textContent = data.humidity;
         })
         .catch(error => console.error('Erro ao buscar dados:', error));
     }
@@ -55,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Busca os dados imediatamente ao carregar a página
     fetchData();
 });
-
 
 // Saudacao 
 function saudacao() {

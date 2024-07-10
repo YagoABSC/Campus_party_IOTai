@@ -249,46 +249,34 @@
 
     <!-- <script src="api.js"></script> -->
     
-    <!-- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const temperatureElement = document.getElementById('curTemp');
-    const humidityElement = document.getElementById('curHum');
-
     
-  
-    function fetchData() {
-      //fetch('http://esp32.local/data')
-      fetch('http://localhost/Campus_party_IOTai/static_web/mock_data.php')
-        .then(response => response.json())
-        .then(data => 
-        {
-        
-        const temperature = Math.floor(Math.random() * 71);
-        const humidity = Math.floor(Math.random() * 101);
+<!-- temperatureElement.innerHTML = `<div>${data.temperature.toFixed(0)}°C</div>`;
 
-        if (temperature <= 10) {
+        humidityElement.innerHTML = `<i class="icone2 fas fa-tint" style="color: rgba(85, 158, 254, 1);"></i> ${data.humidity.toFixed(0)}%`;
+
+        if (temperatureElement <= 10.00) {
 
             document.getElementById('temp-status').innerText = "Temperatura abaixo do ideal";
 
-        }else if(temperature >= 26 && temperature <= 50){
+        }else if(parseFloat(temperatureElement) >= 26 && parseFloat(temperatureElement) <= 50){
 
             document.getElementById('temp-status').innerText = "Aviso: Temperatura acima do ideal";
 
-         }else if(temperature > 50){
+         }else if(parseFloat(temperatureElement) > 50){
             
             document.getElementById('temp-status').innerText = "Perigo: Temperatura muito acima do normal!";
 
-        }else{
+        }else if(parseFloat(temperatureElement) > 10 && parseFloat(temperatureElement) < 26){
         
             document.getElementById('temp-status').innerText = "Temperatura ideal";
         
         }
 
-        if (humidity <= 30) {
+        if (humidityElement <= 30) {
 
             document.getElementById('humi-status').innerText = "Umidade abaixo do ideal"
         
-        } else if (humidity => 60){
+        } else if (humidityElement >= 60){
            
             document.getElementById('humi-status').innerText = "Umidade muito alta"
         
@@ -297,27 +285,10 @@
             document.getElementById('humi-status').innerText = "Umidade ideal"
        
         }
-            
-          temperatureElement.textContent = temperature + '°C';
 
-          humidityElement.innerHTML = `<i class="icone2 fas fa-tint" style="color: rgba(85, 158, 254, 1);"></i> ${humidity} % `;
         })
         .catch(error => console.error('Erro ao buscar dados:', error));
-
-
-        
-        
-    }
-
-    
-  
-    // Busca os dados a cada 2 segundos, tempo de atualização do módulo
-    setInterval(fetchData, 6000);
-  
-    // Busca os dados imediatamente ao carregar a página
-    fetchData();
-}); -->
-
+    }-->
 <script>
 async function getWeather(city, apiKey) {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=pt`;
