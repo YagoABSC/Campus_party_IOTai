@@ -13,29 +13,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
         humidityElement.innerHTML = `<i class="icone2 fas fa-tint" style="color: rgba(85, 158, 254, 1);"></i> ${data.humidity.toFixed(0)}%`;
 
-        if (temperatureElement <= 10.00) {
+        if (data.temperature <= 10) {
 
             document.getElementById('temp-status').innerText = "Temperatura abaixo do ideal";
 
-        }else if(parseFloat(temperatureElement) >= 26 && parseFloat(temperatureElement) <= 50){
+        }else if (data.temperature >= 26 && data.temperature <= 50){
 
             document.getElementById('temp-status').innerText = "Aviso: Temperatura acima do ideal";
 
-         }else if(parseFloat(temperatureElement) > 50){
+         }else if(data.temperature > 50){
             
             document.getElementById('temp-status').innerText = "Perigo: Temperatura muito acima do normal!";
 
-        }else if(parseFloat(temperatureElement) > 10 && parseFloat(temperatureElement) < 26){
+        }else if(data.temperature > 10 && data.temperature < 26){
         
             document.getElementById('temp-status').innerText = "Temperatura ideal";
         
         }
 
-        if (humidityElement <= 30) {
+        if (data.humidity <= 30) {
 
             document.getElementById('humi-status').innerText = "Umidade abaixo do ideal"
         
-        } else if (humidityElement >= 60){
+        } else if (data.humidity >= 60){
            
             document.getElementById('humi-status').innerText = "Umidade muito alta"
         
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   
     // Busca os dados a cada 2 segundos, tempo de atualização do módulo
-    setInterval(fetchData, 2000);
+    setInterval(fetchData, 5000);
   
     // Busca os dados imediatamente ao carregar a página
     fetchData();
