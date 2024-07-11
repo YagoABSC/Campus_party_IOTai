@@ -1,3 +1,28 @@
+#include <WiFi.h>
+#include <WebServer.h>
+#include <ArduinoJson.h>
+
+// Access point credentials
+const char* ssid = "ESP32-AP";
+const char* password = "123456789";
+
+// Create the WebServer object on port 80
+WebServer server(80);
+
+// Data structure to hold sensor data
+struct SensorData {
+  String location;
+  float temperature;
+  float humidity;
+};
+
+// Array to hold data from multiple rooms
+const int maxRooms = 10;
+SensorData sensorDataArray[maxRooms];
+int roomCount = 0;
+
+// HTML page template
+const char* htmlPage = R"rawliteral(
 <!DOCTYPE html>
 <html lang='pt-br'>
 
@@ -329,3 +354,95 @@
 </body>
 
 </html>
+)rawliteral";
+
+// Function to handle root page
+void handleRoot() {
+  String dataHtml = "";
+  for (int i = 0; i < roomCount; i++) {
+
+    // -----------Nosso---------------
+    dataHtml += "<section class="cards"><div class="sensor-data-show">";
+    dataHtml += "<h4>" + String(sensorDataArray[i].temperature) + " &deg;C</h4><hr><p>" + String(sensorDataArray[i].humidity) + " %</p></div><div class="recommendations">";
+    dataHtml += "<h2>" + sensorDataArray[i].location + "</h2><p><b>Recomendações:</b></p><div id='recommendation'></div></div></section>";
+  }
+
+  String html = htmlPage;
+  html.replace("%DATA%", dataHtml);
+  html.replace("%ROOMCOUNT%", String(roomCount));
+  if (roomCount > 0) {
+    html.replace("%TEMPERATURE%", String(sensorDataArray[0].temperature));
+    html.replace("%HUMIDITY%", String(sensorDataArray[0].humidity));
+  } else {
+    html.replace("%TEMPERATURE%", "0");
+    html.replace("%HUMIDITY%", "0");
+  }
+
+  server.send(200, "text/html", html);
+}
+
+// Function to handle POST data
+void handlePostData() {
+  if (server.hasArg("plain") == false) { // Check if body is received
+    server.send(400, "text/plain", "Body not received");
+    return;
+  }
+
+  String body = server.arg("plain");
+  Serial.println("Received data: " + body);
+
+  DynamicJsonDocument doc(1024);
+  DeserializationError error = deserializeJson(doc, body);
+
+  if (error) {
+    Serial.print("deserializeJson() failed: ");
+    Serial.println(error.c_str());
+    return;
+  }
+
+  String location = doc["location"];
+  float temperature = doc["temperature"];
+  float humidity = doc["humidity"];
+
+  bool roomExists = false;
+
+  for (int i = 0; i < roomCount; i++) {
+    if (sensorDataArray[i].location == location) {
+      sensorDataArray[i].temperature = temperature;
+      sensorDataArray[i].humidity = humidity;
+      roomExists = true;
+      break;
+    }
+  }
+
+  if (!roomExists && roomCount < maxRooms) {
+    sensorDataArray[roomCount].location = location;
+    sensorDataArray[roomCount].temperature = temperature;
+    sensorDataArray[roomCount].humidity = humidity;
+    roomCount++;
+  }
+
+  server.send(200, "text/plain", "Data received");
+}
+
+void setup() {
+  // Start serial communication
+  Serial.begin(115200);
+
+  // Start the access point
+  WiFi.softAP(ssid, password);
+  Serial.print("IP address: ");
+  Serial.println(WiFi.softAPIP());
+
+  // Configure the server to serve the root page and handle POST data
+  server.on("/", handleRoot);
+  server.on("/post-data", HTTP_POST, handlePostData);
+
+  // Start the server
+  server.begin();
+}
+
+void loop() {
+  // Handle client requests
+  server.handleClient();
+}
