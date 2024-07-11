@@ -91,31 +91,15 @@
 
         .container-home {
             margin: 10px 10px;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
             align-items: center;
             width: 90%;
             margin-bottom: 20px;
+            justify-items: center;
 
         }
-
-        .cards {
-            /* max-width: 280px; */
-            width: 90%;
-            height: 13vw;
-            background-color: #263375;
-            border-radius: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff;
-            font-size: 2vw;
-        }
-
-        
-        
 
         #weather {
             position: relative;
@@ -193,37 +177,97 @@
             position: relative;
             bottom: 10px;
         }
+
+        .cards {
+            /* max-width: 280px; */
+            width: 90%;
+            /* height: 13vw; */
+            min-height: 100px;
+            padding: 15px;
+            background-color: #263375;
+            border-radius: 30px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            /* flex-direction: column; */
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 2vw;
+        }
+
+        .sensor-data-show {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            justify-items: center;
+            align-items: center;
+            font-size: 5vw;
+            width: 25vw;
+            height: 25vw;
+            border-radius: 50%;
+            background-color: white;
+            color: #0a3d7d;
+            ;
+        }
+
+        .sensor-data-show hr {
+            width: 70%;
+            border: 1px solid;
+            background-color: #0a3d7d;
+            /* margin: 10px 0; */
+        }
+
+        .recommendations {
+            padding: 0 10px;
+            font-size: 4vw;
+        }
     </style>
 </head>
 
 <body onload="saudacao()">
+
     <header>
         <div class="container-header">
             <div class="img-iconAlerta">
                 <img src="https://avatars.githubusercontent.com/u/153244771?v=4" alt="imagem de perfil">
-                <ion-icon name="notifications-outline" class="notificao"></ion-icon>
+                <!-- <ion-icon name="notifications-outline" class="notificao"></ion-icon> -->
+                <div gg-alarme></div>
             </div>
             <div class="boasVindas">
-                <h2>Olá, <b class="user">Arthur</b></h2>
+                <h2>Olá, <b class="user">Campuseiro</b></h2>
                 <span id="saudacao"></span>
             </div>
         </div>
     </header>
+
+
     <main class="conteudo-home">
+
         <section class="container-home">
             <h1 class="t1">IOT Alarmes Inteligentes</h1>
+
             <section class="cards">
-                    <div>
-                        <h4>Monitor Casa</h4>
-                        <p>4 cômodos sendo monitorados</p>
-                    </div>
+                <div class="sensor-data-show">
+                    <h4>14°C</h4>
+                    <hr>
+                    <p>45%</p>
+                </div>
+                <div class="recommendations">
+                    <h3>Recomendações:</h3>
+                    <p>A temperatura está muito alta. Certifique-se de se manter hidratado.</p>
+                </div>
             </section>
+
         </section>
+
     </main>
+
     <nav>
         <div class="itens-nav">
-            <a href="#">
-                <ion-icon name="home-outline"></ion-icon>
+            <a href="#">HOME
+                <!-- <ion-icon name="home-outline"></ion-icon> -->
+
             </a>
             <div class="ligar">
                 <a href="#">
@@ -231,17 +275,19 @@
                 </a>
             </div>
             <a href="#">
-                <ion-icon name="person-outline"></ion-icon>
+                <!-- <ion-icon name="person-outline"></ion-icon> -->
+                ALARME
             </a>
         </div>
     </nav>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const recommendationElement = document.getElementById('recommendation');
             let recommendations = [];
-            const rooms = % ROOMCOUNT %;
-            const temperature = % TEMPERATURE %;
-            const humidity = % HUMIDITY %;
+            // const rooms = %ROOMCOUNT%;
+            // const temperature = %TEMPERATURE%;
+            // const humidity = %HUMIDITY%;
             if (temperature > 30) {
                 recommendations.push('A temperatura está muito alta. Certifique-se de se manter hidratado.');
             } else if (temperature < 10) {
